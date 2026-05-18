@@ -14,7 +14,7 @@ Each folder contains real practice work - not just notes.
 
 | Folder | What I practised |
 |--------|-----------------|
-| `/postman` | API testing — REST methods, assertions, collections |
+| `/postman` | API testing - REST methods, assertions, collections |
 | `/sql` | SQL queries for back-end data validation |
 | `/selenium` | Selenium WebDriver test scripts |
 | `/bdd` | BDD feature files using Gherkin + Behave |
