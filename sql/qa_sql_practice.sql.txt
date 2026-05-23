@@ -1,0 +1,55 @@
+-- ============================================
+-- QA SQL Practice Queries
+-- Author: Keerthi Begari | QA Engineer
+-- Database: Practice (users + orders tables)
+-- ============================================
+
+-- QUERY 1: Verify user was saved after registration
+-- QA use: Run after registration test to confirm record exists
+SELECT * FROM users WHERE email = 'keerthi@email.com';
+
+-- QUERY 2: Count total users after bulk import
+-- QA use: Verify total count matches expected import number
+SELECT COUNT(*) as total_users FROM users;
+
+-- QUERY 3: Verify status change after activation
+-- QA use: Confirm status updated correctly in DB after UI action
+SELECT id, first_name, status FROM users WHERE status = 'active';
+
+-- QUERY 4: Find most recently created user
+-- QA use: Quickly locate test user after registration
+SELECT * FROM users ORDER BY created_at DESC LIMIT 1;
+
+-- QUERY 5: Count users by status group
+-- QA use: Verify counts match dashboard display on UI
+SELECT status, COUNT(*) as total FROM users GROUP BY status;
+
+-- QUERY 6: Find duplicate email addresses
+-- QA use: Verify app prevents duplicate registrations
+SELECT email, COUNT(*) as count FROM users
+GROUP BY email HAVING COUNT(*) > 1;
+
+-- QUERY 7: Check for NULL required fields
+-- QA use: Verify no required fields saved as NULL after form submit
+SELECT * FROM users WHERE email IS NULL OR status IS NULL;
+
+-- QUERY 8: Verify order linked to correct user (INNER JOIN)
+-- QA use: Confirm order-user relationship is correct after checkout
+SELECT users.first_name, users.email, orders.product, orders.status
+FROM users
+INNER JOIN orders ON users.id = orders.user_id;
+
+-- QUERY 9: Find pending orders with user details (JOIN + WHERE)
+-- QA use: Verify pending orders show correct user information
+SELECT users.first_name, orders.product, orders.amount, orders.status
+FROM users
+INNER JOIN orders ON users.id = orders.user_id
+WHERE orders.status = 'pending';
+
+-- QUERY 10: Verify inactive user has no active orders
+-- QA use: Confirm deactivated user orders are handled correctly
+SELECT users.first_name, users.status, orders.order_id,
+       orders.status as order_status
+FROM users
+INNER JOIN orders ON users.id = orders.user_id
+WHERE users.status = 'inactive';
