@@ -6,11 +6,11 @@
 
 ## Deliverables
 
-### 1. Traditional_Test_Cases.csv
+### 1. TraditionalCases.csv
 Contains 25 traditional-style test cases with:
 - Test Case ID, Category, Title, Preconditions, Steps, Test Data, Expected Result, Priority, Type (Positive/Negative)
 
-### 2. BDD_Test_Cases.csv
+### 2. BDDCases.csv
 Contains 25 BDD-style test cases in Given/When/Then format with:
 - Test Case ID, Feature, Scenario Title, Given, When, Then, Type, Priority
 
